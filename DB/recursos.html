@@ -1,0 +1,33 @@
+
+INSERT INTO img_slider (nombre,categoria,ruta) VALUES ("img_5","enduro","view\img\shop\index2_product5.png")
+INSERT INTO categoria(categoria, ruta, more_visited) VALUES ('growth','view\img\shop\index2_product1.png','0')
+
+
+**********  *********
+<< AJAX PROMISE >>
+
+ajaxPromise(
+    "module/shop/controller/controller_shop.php?op=count_all_pagination",
+    "GET",
+    "JSON"
+  )
+    .then(function (data) {
+      console.log("DEBUG AjaxPromise>>> " + data.length);
+    })
+    .catch(function () {
+      console.log("xeee");
+    });
+
+
+*********************************
+
+<< LOCALSTORAGE >>
+
+localStorage.setItem('categoria_car',categoria_car); // save data
+
+********************************
+<< "SALTO A CONTROLLER">>
+
+setTimeout('window.location.href ="index.php?page=controller_shop&op=list";',1000);   
+
+**********************************

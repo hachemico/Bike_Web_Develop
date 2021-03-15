@@ -1,6 +1,6 @@
 function search(){
 
-        $(".form-control").on("keyup", function () {
+        $("#form-search").on("keyup", function () {
             
             var auto = $(this).val();///valor de lo que estamos escribiendo 
             if(auto==""){
@@ -48,5 +48,5 @@ function search(){
     }//end_key_up
     
     $(document).ready(function () {
-    search();
+    // search();
     });

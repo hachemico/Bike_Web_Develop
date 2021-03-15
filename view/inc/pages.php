@@ -15,6 +15,9 @@
 		case "controller_shop_detail";
 			include("module/shop_detail/controller/".$_GET['page'].".php");
 			break;
+			case "controller_login";
+			include("module/login/controller/".$_GET['page'].".php");
+			break;	
 		case "services";
 			include("module/services/".$_GET['page'].".php");
 			break;

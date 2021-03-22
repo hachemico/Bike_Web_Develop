@@ -53,6 +53,7 @@
 	    <link href="view/css/style.css" rel="stylesheet" type="text/css" />
         <script src="module/search/view/controller_search.js"></script>
         <script src="module/login/view/controller_login.js"></script>
+        <script src="module/login/view/controller_register.js"></script>
         
        
     </head>

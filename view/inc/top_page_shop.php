@@ -88,7 +88,7 @@
         <script src="module/shop/model/controller_shop.js"></script>
         <script src="module/search/view/controller_search.js"></script>
         <script src="module/login/view/controller_login.js"></script>
-        
+        <script src="module/login/view/controller_register.js"></script>
         <script src="view/js/ajax_promise/ajax_promise.js"></script>
         
     </head>

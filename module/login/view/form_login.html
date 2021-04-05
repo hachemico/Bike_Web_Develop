@@ -9,23 +9,26 @@
 
 				<div class="col-md-5 col-md-offset-1">
 
-					<form method="post" action="#">
+					<form id="form_login" name="form_login" method="post">
 						<h4 class="nomargin">Entrar</h4>
 						<p class="mt5 mb20">Login para acceder a tu cuenta.</p>
 
-						<input type="text" class="form-control uname" placeholder="Usuario" />
-						<input type="password" class="form-control pword" placeholder="contraseña" />
+						<input type="text" class="form-control" id="user_log_email" name="user_log_email" placeholder="Correo electrónico"/>
+						<span style="color: red ;" id="e_log_email"></span>
+						<input type="password" class="form-control" id="user_log_passwd" name="user_log_passwd" placeholder="Contraseña" />
+						<span style="color: red ;" id="e_log_passwd"></span>
 						<a href="#"><small>Recuperar contraseña?</small></a>
-						<button class="btn btn-success btn-block">Acceder</button>
+					</br>
+							<div id="show_log_dialog"></div>
+					</br>
+						<input  type="button" name="login_input" id="login_input" class="btn btn-success btn-block" value="Acceder"></input>
 
 					</form>
 				</br>
-					<strong>No eres miembro? <button class="register_button_from_login" onclick="validate_login()">Registrarse</button></strong>
+					<strong>No eres miembro? <button class="register_button_from_login">Registrarse</button></strong>
 				</div><!-- col-sm-5 -->
 				
-				
 			</div><!-- row -->
-
 
 		</div><!-- signin -->
 

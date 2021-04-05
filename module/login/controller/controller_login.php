@@ -53,15 +53,19 @@
 
 			case 'login':
 				// echo json_encode("Dentro Case LOGIN: >>>");
+				$mail_log=$_POST['user_log_email'];
+				$passwd_log=$_POST['user_log_passwd'];
+				//  echo json_encode($passwd);
+				//  echo json_encode($passwd);
 				try {
 					$daologin = new DAO_login();
-					$rdo = $daologin->login_user($_POST['user_log_email'],$_POST['user_log_passwd']);
+					$rdo = $daologin->login_user($mail_log,$passwd_log);
 				} catch (Exception $e) {
 					echo json_encode("DEBUG error");
 					exit();
 				}
-
-					echo json_encode("Hola pepe");
+				// $value = get_object_vars($rdo);
+				 echo json_encode($rdo);	
 				// if(!$rdo){
 				
 				// 	 echo json_encode("DEBUG El usuario no existe");

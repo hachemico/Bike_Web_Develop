@@ -34,7 +34,8 @@ function shop(){
       console.log("Debug Carousel LocalStorage >>> "+drop_homecar);
       console.log("Debug Autocom_Search LocalStorage >>> "+drop_autocom);
       console.log("Debug Offset_pag LocalStorage >>> "+drop_offset_pag);
-  // ******* BUTTONS-CLICKS ********* //
+ 
+      // ******* BUTTONS-CLICKS ********* //
 
   $(document).on('click','.product-click',function (){ // CLICK DETAILS
        var id = this.getAttribute('id');
@@ -106,56 +107,45 @@ function ajaxForSearch(durl) {
                                 '<p class="product-price">'+data[i].brand+' '+data[i].model+' </p>'+
                               '</div>'+
                               '<!-- .product-bio end -->'+
-                        '</div>'+
-                        '<!-- .product-item end -->');
+                        
+                        '<!-- .product-item end -->'+
+                        '<div class="product-bio">'+
+							              '<p><span style="font-size:20px">'+data[i].price+'€</span><a style="font-size:18px" id="fav_button" class="btn fav_button"><i class="fa fa-heart"></i></a></p>'+
+						            '</div>'+
+						            '<!-- .product-bio end -->'+
+                        
+                        '</div>'
+                        );
                       }
                       $('#shop-all').append(cadena)
 
        }else{ // ***** DETAILS *** MUESTRA 1 ARTICULO
-                // var count_details=0;
-                // if(count_details==0){
-                //   shop_details();
-                //   count_details=count_details+1;
-                // }
+                
                 console.log("DEBUG DETAILS");
                 $('#shop-all').empty();
                 $('#shop-detail').empty();
                 $('#pagination').empty();
                 $('#shop-detail').append(
                   '<div class="col-xs-12 col-sm-6 col-md-4 product-item filter-best">'+
-                          '<div class="product-img">'+
-                              '<img src="'+ data.img +'" class="product-click" alt="" id= "'+data.idbike +'" >'+
-                          '</div>'+
-                          '<!-- .product-img end -->'+
-                          '<div class="product-bio">'+
-                            '<h4>'+
-                              '<a>'+data.category+'</a>'+
-                            '</h4>'+
-                            '<p class="product-price">'+data.brand+' '+data.model+' </p>'+
-                            '<h4>'+
-                                  '<a>Año: </a>'+
-                            '</h4>'+
-                                  '<a>'+data.year+'</a>'+ 
-                            '<h4>'+
-                                  '<a>Tamaño Rueda: </a>'+
-                            '</h4>'+
-                                  '<a>'+data.wheel_size+'</a>'+
-                            '<h4>'+
-                                  '<a>Más Datos: </a>'+
-                            '</h4>'+
-                                    '<a>'+data.comment+'</a>'+
-                          '</div>'+
-                          '<!-- .product-bio end -->'+
-                    '</div>'+
-                    '<!-- .product-item end -->'+
-                  '</div>'+
-              '<div class="row">'+
-                  '<div class="col-xs-12 col-sm-12 col-md-12 text-center">'+
-                      '<a class="btn btn-secondary click-volver">Volver <i class="fa ml-xs"></i></a>'+
-                  '</div>'+
-                  '<!-- .col-md-12 end -->'+
-              '</div>'+
-              '<!-- .row End -->'
+                              '<div class="product-img">'+
+                                  '<img src="'+ data.img +'" class="product-click" id= "'+data.idbike +'" alt="" >'+
+                              '</div>'+
+                              '<!-- .product-img end -->'+
+                              '<div class="product-bio">'+
+                                '<h4>'+
+                                  '<a href="#">'+data.category+'</a>'+
+                                '</h4>'+
+                                '<p class="product-price">'+data.brand+' '+data.model+' </p>'+
+                              '</div>'+
+                              '<!-- .product-bio end -->'+
+                        
+                        '<!-- .product-item end -->'+
+                        '<div class="product-bio">'+
+							              '<p><span style="font-size:20px">'+data.price+'€</span></p>'+
+						            '</div>'+
+						            '<!-- .product-bio end -->'+
+                        '<a style="font-size:20px" id="fav_button" class="btn fav_button"><i class="fa fa-heart"></i></a>'+
+                        '</div>'
               ) // end_append  
           } //end_else   
    }) // end done
@@ -462,7 +452,17 @@ function filters(){
 
 } //    ****************    END_ PAGINATION     **************
 
-   
+   function fav_button(){
+    $(document).on('click','.fav_button',function (){ // CLICK DETAILS
+      console.log("DEBUG click fav_button >>> ");
+
+
+
+
+
+     });  // console.log("DEBUG carga fav_buton function >>>");
+    
+   }
      
   function api_google_books (){ 
     // console.log("Dentro de API");	    
@@ -506,5 +506,5 @@ function filters(){
     count_products();
     pagination();
     api_google_books ()
-    
+    fav_button();
   }); //close document_ready

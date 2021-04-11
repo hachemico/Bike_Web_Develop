@@ -41,6 +41,11 @@ function shop_detail(){
                 '</div>'
 
               ) 
+              $('#fav_button_details').append(
+                '<a  style="font-size:20px" id="fav2_button_details" class="btn fav2_button_details"><i class="fa fa-heart"></i></a>'
+              )
+              
+
               $('#detail_comment').append(
                 '<p>'+data.comment+'</p>'
               )
@@ -56,16 +61,21 @@ function shop_detail(){
 
             })
             .catch(function () {
-              console.log("xeee");
+              console.log("error");
             });
 
 
         $(document).on('click','.click-volver',function (){ //Volver al shop   
              console.log("Debug Click VOLVER");
              
-             setTimeout('window.location.href ="index.php?page=controller_shop&op=list";',100);  
-            
-      });
+             setTimeout('window.location.href ="index.php?page=controller_shop&op=list";',100);   
+        });
+        $(document).on('click','#fav2_button_details',function (){ //Volver al shop   
+          console.log("Debug Click fav2_button_details >>>");
+          
+          // setTimeout('window.location.href ="index.php?page=controller_shop&op=list";',100);  
+         
+        });
     }//end_if_getElementID_shop_details
 }//end_shop_detail
 

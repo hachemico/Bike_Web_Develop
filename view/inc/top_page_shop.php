@@ -90,6 +90,7 @@
         <script src="module/login/view/controller_login.js"></script>
         <script src="module/login/view/controller_register.js"></script>
         <script src="view/js/ajax_promise/ajax_promise.js"></script>
+        <script src="init.js"></script>
         
     </head>
     <body class="style-14 index-2">

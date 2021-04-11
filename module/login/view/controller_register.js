@@ -43,13 +43,13 @@ var ajax_reg = function (url, data) { // Funcion ajax_reg con promise
             })
     })
 };
-function register_button(){
+// function register_button(){ //Trasladado al init.js para que detect el evento.
 
-    $("#register-button").click(function(){
-        console.log("DEBUG CARGA EL JS. REGISTER GO GO >>>");
-        setTimeout('window.location.href ="index.php?page=controller_login&op=list_register";',1000);
-    });
-}
+//     $("#register-button").click(function(){
+//         console.log("DEBUG CARGA EL JS. REGISTER GO GO >>>");
+//         setTimeout('window.location.href ="index.php?page=controller_login&op=list_register";',1000);
+//     });
+// }
 function register_submit(){
    
     $("#register_input").click(function (e) {
@@ -71,7 +71,7 @@ function register_keydown(){
 }
 
 $(document).ready(function () {
-    register_button();
+    // register_button();
     register_submit();
     register_keydown();
     

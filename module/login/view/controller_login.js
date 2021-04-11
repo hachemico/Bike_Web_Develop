@@ -6,8 +6,10 @@ function login(){
                 // console.log("DEBUG valor userinfo >>>"+ userinfo[0].value);
                 ajax_log('module/login/controller/controller_login.php?&op=login&', userinfo)
                 .then(function (data) {
-                    console.log("DEBUG valor data Ajax_LOG >>>"+ data);
-
+                    // console.log("DEBUG valor data Ajax_LOG >>>"+ data);
+                    
+                    localStorage.setItem('token',data); // guardamos el token generado en localstorage.
+                    setTimeout(' window.location.href = "index.php?page=controller_home&op=list"; ',1000); //Saltamos al home para lanzar la vista.
                 }) //end_ajax_log
                
                 // $.ajax({
@@ -54,15 +56,15 @@ var ajax_log = function (url, data) { // Funcion ajax_reg con promise
 };
 
 
-function login_button(){
+// function login_button(){ //trasladado al init.js para que detecte el evento.
     
-    $("#login-button").click(function(){
-        console.log("DEBUG CARGA EL JS. LOGIN GO GO >>>");
-        setTimeout('window.location.href ="index.php?page=controller_login&op=list_login";',1000);
+//     $("#login-button").click(function(){
+//         console.log("DEBUG CARGA EL JS. LOGIN GO GO >>>");
+//         setTimeout('window.location.href ="index.php?page=controller_login&op=list_login";',1000);
 
-    }); 
+//     }); 
     
-}
+// }
 function login_submit(){
    
     $("#login_input").click(function (e) {
@@ -84,7 +86,7 @@ function login_keydown(){
 }
 
 $(document).ready(function () {
-    login_button();
+    // login_button();
     login_submit();
     login_keydown();
     

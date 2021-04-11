@@ -1,7 +1,7 @@
 <?php 
 	$path = $_SERVER['DOCUMENT_ROOT'] . '/8_MVC_CRUD';
     include($path . "/module/login/model/DAO_login.php");
-    // include($path . "module/login/model/valide.php");
+	// include($path . "/module/utils/middleware_auth.php");
 	// @session_start();
 
     switch ($_GET['op']) {
@@ -45,51 +45,61 @@
 						echo "Error al registrarse";
 						exit();
 					}else{
-					
 						echo json_encode("Registrado Correctamente");
 					}	
 				
 			break;	
 
 			case 'login':
-				// echo json_encode("Dentro Case LOGIN: >>>");
+			
 				$mail_log=$_POST['user_log_email'];
 				$passwd_log=$_POST['user_log_passwd'];
-				//  echo json_encode($passwd);
-				//  echo json_encode($passwd);
+			
 				try {
 					$daologin = new DAO_login();
 					$rdo = $daologin->login_user($mail_log,$passwd_log);
 				} catch (Exception $e) {
-					echo json_encode("DEBUG error");
+					echo json_encode("error_login");
 					exit();
 				}
-				// $value = get_object_vars($rdo);
 				 echo json_encode($rdo);	
-				// if(!$rdo){
+	
+				break;	
+			
+			case 'menu':
+				// $token = 0;
+				// $token = $_POST['token'];
 				
-				// 	 echo json_encode("DEBUG El usuario no existe");
-				// 	exit();
-				// }else{
-				// 	$value = get_object_vars($rdo);
+				$aux_payload=decode_token($_POST['token']);
+				
+				 $aux2=explode(',',$aux_payload);
+				 $aux3=explode(':',$aux2[2]);
+				 $aux4=explode('}',$aux3[1]);
+				 $email=$aux4[0];
 
-				// 	if (password_verify($_POST['user_log_passwd'],$value['passwd'])) {
-				// 		echo json_encode("DEBUG Passwd correcto");
-				// 		// if (isset($_SESSION['purchase']) && $_SESSION['purchase'] === 'on')
-				// 		// 	echo 'okay';
-				// 		// else
-				// 		// 	echo 'ok';
-				// 		// $_SESSION['type'] = $value['type'];
-				// 		// $_SESSION['user'] = $value['user'];
-				// 		// $_SESSION['tiempo'] = time();
-				// 		// exit();
-				// 	}else {
-						
-				// 		 echo json_encode(" DEBUG No coinciden los datos");
-				// 		exit();
-				// 	}
-				// }	
-				break;			
+				try {
+					$daologin = new DAO_login();
+					$rdo = $daologin->select_user_menu($email);
+					
+				} catch (Exception $e) {
+					echo json_encode("error_login");
+					exit();
+				}
+				
+				if(!$rdo){
+					echo json_encode("error");
+				}
+				else{
+				  $dinfo = array();
+				  foreach ($rdo as $row) {
+				  array_push($dinfo, $row);
+				  }
+				    echo json_encode($dinfo);
+				} 
+
+
+				// echo json_encode($rdo);
+			break;
 		
 		default:
 			include("view/inc/error404.php");

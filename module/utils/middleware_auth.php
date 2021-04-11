@@ -1,23 +1,27 @@
 <?php
+$path = $_SERVER['DOCUMENT_ROOT'] . '/8_MVC_CRUD';
+include($path . "/module/classes/JWT.php");
 
-function encode($user_name){
+function encode_token($user_email){
 ////////////////////////////////////////////////
     //https://github.com/miguelangel-nubla/JWT-PHP//
     ////////////////////////////////////////////////
    
-    require_once "JWT.php";
+    // require_once ("JWT.php");
     $header = '{"typ":"JWT", "alg":"HS256"}';
     $secret = 'lapalmerasedoblaperoaguantaelhuracan';
-
+    $iat = time();
+    $exp = time()+(60*60);
     /////////////////////////// hachemico ////////////////////////////////////////
     //iat: Tiempo que inició el token
     //exp: Tiempo que expirará el token (+1 hora)
     //name: info user
-    $payload = {
-        "iat":time(), 
-        "exp":time() + (60*60),
-        "name": $user_name
-    };
+   
+    $payload = "{
+        'iat':'$iat', 
+        'exp':'$exp',
+        'name':'$user_email'
+    }";
 
     $JWT = new JWT;
     $token = $JWT->encode($header, $payload, $secret);
@@ -26,8 +30,12 @@ function encode($user_name){
     return $token;
 }
 
-function decode(){
+function decode_token($token){
+    
+    $secret = 'lapalmerasedoblaperoaguantaelhuracan';
+    $JWT = new JWT;
     $json = $JWT->decode($token, $secret);
-    echo 'JWT decode usuario: >>> '.$json."\n\n"; echo '<br>'; echo '<br>';
+    // echo 'JWT decode usuario: >>> '.$json."\n\n"; echo '<br>'; echo '<br>';
+    return $json;
 }
 ?>

@@ -54,6 +54,7 @@
         <script src="module/search/view/controller_search.js"></script>
         <script src="module/login/view/controller_login.js"></script>
         <script src="module/login/view/controller_register.js"></script>
+        <script src="init.js"></script>
         
        
     </head>

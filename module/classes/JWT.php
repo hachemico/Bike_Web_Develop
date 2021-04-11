@@ -31,39 +31,11 @@ class JWT {
         exit('Invalid Signature');
     }
     
-    private function setAlgorithm($algorithm) {
-        switch ($algorithm[0]) {
-            case n:
-                $this->alg = 'plaintext';
-                break;
-            case H:
+    // private function setAlgorithm($algorithm) {
+    private function setAlgorithm() {
+       
                 $this->alg = 'HMAC';
-                break;
-            // By now, the only native is HMAC
-            /* 
-            case R:
-                $this->alg = 'RSA';
-                break;
-            case E:
-                $this->alg = 'ECDSA';
-                break;
-            */
-            default: exit("RSA and ECDSA not implemented yet!");
-        }
-        switch ($algorithm[2]) {
-            case a:
-                $this->alg = 'plaintext';
-                break;
-            case 2:
                 $hash = 'sha256';
-                break;
-            case 3:
-                $hash = 'sha384';
-                break;
-            case 5:
-                $hash = 'sha512';
-                break;
-        }
         if (in_array($hash, hash_algos())) $this->hash = $hash;
     }
 

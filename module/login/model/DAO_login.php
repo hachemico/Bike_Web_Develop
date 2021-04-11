@@ -15,7 +15,16 @@
 			return $res;
 
 		}//end_valide_user
+       
+        function select_user_menu($user_email){
+            
+            $sql = "SELECT name, type, email, avatar FROM user WHERE email=$user_email";
+            $connection = connect::con();
+			$res = mysqli_query($connection, $sql);
+			connect::close($connection);
+			return $res;
 
+		}//end_valide_user
 
         function insert_user($nombre,$email,$passwd){
             
@@ -54,20 +63,11 @@
                
 				if (password_verify($user_passwd,$dinfo['0']['passwd'])) {
 
-				 	$rdo=("DEBUG coinciden true");
-                    $rdo2= encode($user_email);
-    
-                //     // if (isset($_SESSION['purchase']) && $_SESSION['purchase'] === 'on')
-				// 	// 	echo 'okay';
-				// 	// else
-				// 	// 	echo 'ok';
-				// 	// $_SESSION['type'] = $value['type'];
-				// 	// $_SESSION['user'] = $value['user'];
-				// 	// $_SESSION['tiempo'] = time();
-				// 	// exit();
+				 	// echo=("DEBUG coinciden true");
+                    $rdo= encode_token($user_email);
 				}else {
 					echo "No coinciden los datos";
-                    $rdo=("DEBUG No coinciden >>>");
+                    $rdo=("");
 					exit();
 				}
 			}	

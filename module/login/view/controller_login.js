@@ -38,22 +38,24 @@ function login(){
                 // });
             }
     
-}
-var ajax_log = function (url, data) { // Funcion ajax_reg con promise
+} // end function login
 
-    // console.log(data)
 
-    return new Promise(function (resolve) {
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: data
-        })
-            .done(function (data_log) {
-                resolve(data_log);
-            })
-    })
-};
+// var ajax_log = function (url, data) { // Funcion ajax_reg con promise
+
+//     // console.log(data)
+
+//     return new Promise(function (resolve) {
+//         $.ajax({
+//             type: "POST",
+//             url: url,
+//             data: data
+//         })
+//             .done(function (data_log) {
+//                 resolve(data_log);
+//             })
+//     })
+// };
 
 
 // function login_button(){ //trasladado al init.js para que detecte el evento.
@@ -73,6 +75,13 @@ function login_submit(){
         login();
     });
 }
+function redir_register(){
+   
+    $("#redir_register").click(function (e) {
+        console.log("DEBUG on SUBMIT redirect_register >>>");
+        setTimeout('window.location.href ="index.php?page=controller_login&op=list_register";',1000)
+    });
+}
 function login_keydown(){
 
     $('#form_login').keypress(function (e) {
@@ -89,5 +98,6 @@ $(document).ready(function () {
     // login_button();
     login_submit();
     login_keydown();
+    redir_register();
     
     });

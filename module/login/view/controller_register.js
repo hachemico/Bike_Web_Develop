@@ -52,13 +52,13 @@ var ajax_reg = function (url, data) { // Funcion ajax_reg con promise
 // }
 function register_submit(){
    
-    $("#register_input").click(function (e) {
+    $("#register_input").click(function (e) { // detectamos click para enviar el formulario
         console.log("DEBUG on SUBMIT >>>");
         e.preventDefault();
         register();
     });
 }
-function register_keydown(){
+function register_keydown(){ //detectamos la tecla intro
 
     $('#form_register').keypress(function (e) {
         console.log("DEBUG keydown register >>>");
@@ -69,10 +69,17 @@ function register_keydown(){
         }
     });  
 }
-
+function redir_login(){ //redireccionamos del register al login
+   
+    $("#redir_login").click(function (e) {
+        console.log("DEBUG on SUBMIT redirect_login >>>");
+        setTimeout('window.location.href ="index.php?page=controller_login&op=list_login";',1000)
+    });
+}
 $(document).ready(function () {
     // register_button();
     register_submit();
     register_keydown();
+    redir_login();
     
     });

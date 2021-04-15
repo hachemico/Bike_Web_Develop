@@ -110,7 +110,7 @@ function ajaxForSearch(durl) {
                         
                         '<!-- .product-item end -->'+
                         '<div class="product-bio">'+
-							              '<p><span style="font-size:20px">'+data[i].price+'€</span><a style="font-size:18px" id="fav_button" class="btn fav_button"><i class="fa fa-heart"></i></a></p>'+
+							              '<p><span style="font-size:20px">'+data[i].price+'€</span><a style="font-size:18px" id="fav_button" class="btn fav_button" name="'+data[i].idbike+'"><i class="fa fa-heart"></i></a></p>'+
 						            '</div>'+
 						            '<!-- .product-bio end -->'+
                         
@@ -455,7 +455,43 @@ function filters(){
    function fav_button(){
     $(document).on('click','.fav_button',function (){ // CLICK DETAILS
       console.log("DEBUG click fav_button >>> ");
+      //  let this_btn = $(this);
+       let atr_idbike = this.getAttribute('name'); // guardamos el valor el atributo "name" correspondiente al articulo que queremos hacer fav.
+      if(localStorage.getItem('token')!=null){ //discriminamos si existe token de usuario log.
 
+        let down_token = localStorage.getItem('token'); //obtenemos el token del usuario.
+        token = down_token.replace(/"/g,''); //Quitamos las comillas para dejar el token limpio
+        console.log(token);
+
+        //**********************************
+        //aqui hay que validar el token "time" para continuar que la sesion sea valida.
+        //*********************************
+
+        ajax_log('module/shop/controller/controller_shop.php?&op=favs',{"token":token})
+                  .then(function (data) {
+                      console.log("DEBUG valor usuari favs >>>"+ data);
+                      console.log("DEBUG valor id_bike>> "+atr_idbike);    //valor del id_producto al que tenemos que añadir el fav.                  
+                      aux_data=JSON.decode(data);
+                      aux2=aux_data[0].email;
+                      console.log("AAA"+aux2);
+
+                      // ajax_log('module/shop/controller/controller_shop.php?&op=insertfavs',{"data_favs":atr_idbike,"data_user":data})
+                      // .then(function (data) {
+                      //     console.log("DEBUG valor data favs >>>"+ data);
+                          
+                      //     console.log("DEBUG valor id_bike>> "+atr_idbike);    //valor del id_producto al que tenemos que añadir el fav.                  
+                         
+    
+                      // }) //end_ajax_log
+
+
+
+        }) //end_ajax_log
+
+      }else{ //No existe el token, realizar acciones para hacer login o register
+
+        setTimeout('window.location.href ="index.php?page=controller_login&op=list_login";',1000);
+      }
 
 
 

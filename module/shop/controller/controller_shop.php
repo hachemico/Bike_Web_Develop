@@ -1,7 +1,7 @@
 <?php
     $path = $_SERVER['DOCUMENT_ROOT'] . '/8_MVC_CRUD';
     include($path . "/module/shop/model/DAO_shop.php");
-
+    include($path . "/module/utils/middleware_auth.php");
     
     switch($_GET['op']){
         
@@ -236,8 +236,64 @@
         //   echo json_encode("DEBUG OK!");
           }   
           break;
+
+          case 'favs';
+                
+        //   $data=$_POST['token'];
+          $aux_payload=decode_token($_POST['token']);
+				
+				 $aux2=explode(',',$aux_payload);
+				 $aux3=explode(':',$aux2[2]);
+				 $aux4=explode('}',$aux3[1]);
+				 $email=$aux4[0];
+        //    echo($email);
+        //    exit();  
+          try{
+         
+              $daoshop = new DAO_shop();
+              $rdo = $daoshop->select_user_favs($email);
+              
+          } catch(Exception $e){
+              echo json_encode("error");
+          }
   
-        
+          if(!$rdo){
+              echo json_encode("error select_userDAO");
+          }
+          else{
+              $dinfo = array();
+              foreach ($rdo as $row) {
+              array_push($dinfo, $row);
+              }
+              echo json_encode($dinfo);
+          }   
+          break;
+          
+          case 'insertfavs';
+            
+          try{
+         
+              $daoshop = new DAO_shop();
+              $rdo = $daoshop->insert_user_favs($_POST['data_favs'], $_POST['data_user']);
+             // echo json_encode($rdo); 
+          } catch(Exception $e){
+              echo json_encode("error_insertFavs");
+          }
+  
+          if(!$rdo){
+              echo json_encode("error_insertFavs2");
+          }
+          else{
+            // $dinfo = array();
+            // foreach ($rdo as $row) {
+            // array_push($dinfo, $row);
+            // }
+            // echo json_encode($dinfo);
+              echo json_encode($rdo);
+        //   echo json_encode("DEBUG dentro del insert favs >>>");
+          }   
+          break;
+
         default:
         include("view/inc/error404.php");
         break;

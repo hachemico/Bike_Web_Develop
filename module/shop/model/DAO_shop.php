@@ -76,5 +76,29 @@
 			connect::close($connection);
 			return $res;
 		}
+		function select_user_favs($user_email){ //seleccionamos el usuario
+           
+            $sql = "SELECT name, type, email, avatar FROM user WHERE email=$user_email";
+            $connection = connect::con();
+			$res = mysqli_query($connection, $sql);
+			connect::close($connection);
+			return $res;
+
+
+			return $aux1;
+		}//end_valide_user
+
+		function insert_user_favs($id_bike_fav,$user_fav){ //seleccionamos el usuario
+            $aux1=$id_bike_fav;
+			$aux2=$user_fav;
+            $sql = "INSERT INTO user_product(email_user, id_bike, aux) VALUES ('$user_fav','$id_bike_fav','')";
+			// INSERT INTO user_product(email_user, id_bike, aux) VALUES ('hachemico@gmail.com','003','');
+            $connection = connect::con();
+			$res = mysqli_query($connection, $sql);
+			connect::close($connection);
+			return $res;
+
+			// return $aux2;
+		}//end_valide_user
 	}
 ?>
